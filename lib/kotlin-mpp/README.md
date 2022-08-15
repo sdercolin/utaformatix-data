@@ -1,5 +1,7 @@
 # UtaFormatix Data as Kotlin
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.sdercolin.utaformatix/utaformatix-data/1.0.0)](https://search.maven.org/artifact/com.sdercolin.utaformatix/utaformatix-data/1.0.0/pom)
+
 Kotlin implementation of [UtaFormatix Data Format](https://github.com/sdercolin/utaformatix-data).
 
 ## Import
