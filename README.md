@@ -120,13 +120,13 @@ The data is stored in JSON with file extension `.ufdata`.
 
 Only points with changed values are included.
 
-e.g. `[(1, 1.0),  (4, 3.0)]` implies tick 2 and 3 all have the same value of `1.0`.
+e.g. `[(1, 1.0),  (4, 3.0)]` implies ticks between (in this case, `2` and `3`) have the same value of `1.0`.
 
-| Variable name | Description                                                                                                        | Type           |
-|---------------|--------------------------------------------------------------------------------------------------------------------|----------------|
-| ticks         | Tick positions of the data points                                                                                  | array\<int64>  |
-| values        | Semitone values of the data points. When `isAbsolute` is true, `null` can be included to represent default values. | array\<double> |
-| isAbsolute    | Whether the pitch values are absolute or relative to the note's key                                                | bool           |
+| Variable name | Description                                                                                                        | Type            |
+|---------------|--------------------------------------------------------------------------------------------------------------------|-----------------|
+| ticks         | Tick positions of the data points                                                                                  | array\<int64>   |
+| values        | Semitone values of the data points. When `isAbsolute` is true, `null` can be included to represent default values. | array\<double?> |
+| isAbsolute    | Whether the pitch values are absolute or relative to the note's key                                                | bool            |
 
 ### Time signature object
 
