@@ -1,4 +1,4 @@
-# UtaFormatix Data as Kotlin
+# UtaFormatix Data in Kotlin
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.sdercolin.utaformatix/utaformatix-data/1.0.0)](https://search.maven.org/artifact/com.sdercolin.utaformatix/utaformatix-data/1.0.0/pom)
 
