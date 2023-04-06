@@ -4,11 +4,12 @@ Common data container for singing synthesis softwares used by [UtaFormatix](http
 
 ## Language-specific interfaces
 
-- [Kotlin Multiplatform](./lib/kotlin-mpp): Kotlin implementation for Jvm/JavaScript/Native
+- [Kotlin Multiplatform](lib/kotlin-mpp): Kotlin implementation for JVM/JavaScript/Native
+- [TypeScript](lib/typescript): TypeScript definitions
 
 ## Data structure
 
-The data is stored in JSON with file extension `.ufdata`.
+The data is stored as JSON with file extension `.ufdata`.
 
 ### Sample
 
