@@ -6,6 +6,7 @@ Common data container for singing synthesis softwares used by [UtaFormatix](http
 
 - [Kotlin Multiplatform](lib/kotlin-mpp): Kotlin implementation for JVM/JavaScript/Native
 - [TypeScript](lib/typescript): TypeScript definitions
+- [Python](lib/python): Python implementation
 
 ## Data structure
 
