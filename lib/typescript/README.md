@@ -15,11 +15,12 @@ npm install utaformatix-data --save
 ## Example
 
 ```typescript
-import { UfData } from "utaformatix-data";
+import { UfData, UtaFormatixDataVersion } from "utaformatix-data";
 
 const jsonString = `...` // load from somewhere
 const ufdata = JSON.parse(jsonString) as UfData;
 
-console.log(ufdata.version);
-console.log(ufdata.project.title);
+console.log(ufdata.version); // version of the data loaded
+console.log(UtaFormatixDataVersion); // version of the format used by current library version
+console.log(ufdata.project.title); // access members
 ```
