@@ -6,8 +6,10 @@ def _load_requirements(file_name):
 
 setup(
     name='utaformatix-data',
-    version='1.0.0',    
+    version='1.0.1',    
     description='Common data container for singing synthesis softwares.',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     url='https://github.com/sdercolin/utaformatix-data',
     author='sdercolin',
     author_email='sder.colin@gmail.com',
