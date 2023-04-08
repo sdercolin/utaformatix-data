@@ -7,8 +7,8 @@
     <PackageId>UtaFormatix.Data</PackageId>
     <AssemblyName>UtaFormatix.Data</AssemblyName>
     <RootNamespace>UtaFormatix.Data</RootNamespace>
-    <PackageVersion>1.0.0</PackageVersion>
-    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <PackageVersion>1.0.1</PackageVersion>
+    <ReleaseVersion>1.0.1</ReleaseVersion>
     <SynchReleaseVersion>false</SynchReleaseVersion>
     <Authors>sdercolin</Authors>
     <Description>Common data container for singing synthesis softwares.</Description>

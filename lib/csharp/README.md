@@ -39,7 +39,7 @@ Console.WriteLine(data.FormatVersion); // format version of the data
 Console.WriteLine(UfData.CurrentFormatVersion); // format version of the library
 
 // access members
-Console.WriteLine(data.Project.Title); 
+Console.WriteLine(data.Project.Name); 
 
 // change a track name
 var track = data.Project.Tracks[0] with { Name = "My Track" };
