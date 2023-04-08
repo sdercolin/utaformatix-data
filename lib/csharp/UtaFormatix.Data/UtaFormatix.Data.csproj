@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>UtaFormatix.Data</PackageId>
+    <AssemblyName>UtaFormatix.Data</AssemblyName>
+    <RootNamespace>UtaFormatix.Data</RootNamespace>
+    <PackageVersion>1.0.0</PackageVersion>
+    <ReleaseVersion>1.0.0</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
+    <Authors>sdercolin</Authors>
+    <Description>Common data container for singing synthesis softwares.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Copyright>Copyright © 2023 sdercolin</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/sdercolin/utaformatix-data</PackageProjectUrl>
+    <OutputType>Library</OutputType>
+    <Configurations>Release;Debug</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\net6.0\UtaFormatix.Data.xml</DocumentationFile>
+  </PropertyGroup>
+</Project>
