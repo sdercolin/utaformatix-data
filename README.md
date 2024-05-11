@@ -9,6 +9,16 @@ Common data container for singing synthesis softwares used by [UtaFormatix](http
 - [Python](lib/python): Python implementation
 - [C#](lib/csharp): C# implementation
 
+## Value Conventions
+
+The `.ufdata` format doesn't prescribe detailed specifications for the values it contains, but there are common conventions for some types based on the support of most formats by `UtaFormatix`:
+
+1. Tick: Each tick represents `1/480 of a beat`, aligning with a typical MIDI resolution of `480` ticks per beat. This resolution facilitates precise timing details in musical data. If working with other formats (e.g., Standard MIDI) that use different resolutions, it is crucial to convert tick resolutions accordingly.
+
+2. Key: The key values correspond to MIDI key numbers, with `C4 = 60`. This standard provides a reference point for middle C, facilitating an understanding of note pitches in relation to standard musical notation.
+
+3. Lyric and Phoneme: There are no fixed standards for lyrics and phonemes; their representations can vary across different formats.
+
 ## Data structure
 
 The data is stored as JSON with file extension `.ufdata`.
