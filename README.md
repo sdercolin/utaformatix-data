@@ -9,7 +9,7 @@ Common data container for singing synthesis softwares used by [UtaFormatix](http
 - [Python](lib/python): Python implementation
 - [C#](lib/csharp): C# implementation
 
-## Value Conventions
+## Value conventions
 
 The `.ufdata` format doesn't prescribe detailed specifications for the values it contains, but there are common conventions for some types based on the support of most formats by `UtaFormatix`:
 
