@@ -2,13 +2,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-    kotlin("multiplatform") version "1.8.22"
-    kotlin("plugin.serialization") version "1.8.22"
+    kotlin("multiplatform") version "2.1.20"
+    kotlin("plugin.serialization") version "2.1.20"
     id("org.jetbrains.dokka") version "2.0.0"
     id("org.danilopianini.publish-on-central") version "8.0.6"
 }
 
-val libVersion by extra { "1.0.1" }
+val libVersion by extra { "1.1.0" }
 val groupId by extra { "com.sdercolin.utaformatix" }
 val artifactId by extra { "utaformatix-data" }
 group = groupId
