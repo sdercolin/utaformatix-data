@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
-    kotlin("multiplatform") version "1.6.21"
-    kotlin("plugin.serialization") version "1.6.21"
-    id("org.jetbrains.dokka") version "1.4.32"
-    id("maven-publish")
-    id("signing")
+    kotlin("multiplatform") version "1.8.22"
+    kotlin("plugin.serialization") version "1.8.22"
+    id("org.jetbrains.dokka") version "2.0.0"
+    id("org.danilopianini.publish-on-central") version "8.0.6"
 }
 
 val libVersion by extra { "1.0.1" }
@@ -16,75 +18,83 @@ repositories {
     mavenCentral()
 }
 
-val dokkaHtml by tasks.getting(org.jetbrains.dokka.gradle.DokkaTask::class)
-
-val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
-    dependsOn(dokkaHtml)
-    archiveClassifier.set("javadoc")
-    from(dokkaHtml.outputDirectory)
-}
-
 kotlin {
+    jvmToolchain(21)
     jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        withJava()
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
         }
-    }
-    js(BOTH) {
-        browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    jvmTarget = JvmTarget.JVM_1_8
+                }
             }
         }
     }
-    val hostOs = System.getProperty("os.name")
-    val isMingwX64 = hostOs.startsWith("Windows")
-    val nativeTarget = when {
-        hostOs == "Mac OS X" -> macosX64("native")
-        hostOs == "Linux" -> linuxX64("native")
-        isMingwX64 -> mingwX64("native")
-        else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
+    js(IR) {
+        browser()
+        nodejs()
+        binaries.library()
+    }
+    val nativeSetup: KotlinNativeTarget.() -> Unit = {
+        binaries {
+            sharedLib()
+            staticLib()
+        }
     }
 
-    
+    applyDefaultHierarchyTemplate()
+
+    linuxX64(nativeSetup)
+    linuxArm64(nativeSetup)
+    mingwX64(nativeSetup)
+    macosX64(nativeSetup)
+    macosArm64(nativeSetup)
+    iosArm64(nativeSetup)
+    iosSimulatorArm64(nativeSetup)
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
             }
         }
         val commonTest by getting
-        val jvmMain by getting
-        val jvmTest by getting
-        val jsMain by getting
-        val jsTest by getting
-        val nativeMain by getting
-        val nativeTest by getting
     }
+
+    targets.all {
+        compilations.all {
+            compileTaskProvider.configure {
+                compilerOptions {
+                    allWarningsAsErrors = true
+                    freeCompilerArgs.add("-Xexpect-actual-classes")
+                }
+            }
+        }
+    }
+}
+
+publishOnCentral {
+    repoOwner.set("sdercolin")
+    projectDescription.set("Common data container for singing synthesis softwares.")
+    val user = findProperty("sonatypeUsername") as? String
+    val password = findProperty("sonatypePassword") as? String
+    mavenCentral.user.set(user)
+    mavenCentral.password.set(password)
 }
 
 publishing {
     publications.withType<MavenPublication> {
-        artifact(javadocJar)
         pom {
             name.set(artifactId)
             description.set("Common data container for singing synthesis softwares.")
             url.set("https://github.com/sdercolin/utaformatix-data")
-            licenses {
-                license {
-                    name.set("The Apache License, Version 2.0")
-                    url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                }
-            }
             developers {
                 developer {
-                    id.set("sdercolin")
                     name.set("sdercolin")
                     email.set("sder.colin@gmail.com")
+                    url.set("https://github.com/sdercolin")
                 }
             }
             scm {
@@ -93,22 +103,5 @@ publishing {
                 url.set("https://github.com/sdercolin/utaformatix-data")
             }
         }
-    }
-    repositories {
-        maven {
-            val releasesRepoUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            val snapshotsRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
-            credentials {
-                username = properties["ossrhUsername"] as? String
-                password = properties["ossrhPassword"] as? String
-            }
-        }
-    }
-}
-
-signing {
-    publishing.publications.withType<MavenPublication> {
-        sign(this)
     }
 }
