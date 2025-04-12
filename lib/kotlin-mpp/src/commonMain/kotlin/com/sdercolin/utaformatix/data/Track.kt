@@ -11,6 +11,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Track(
     val name: String,
-    val notes: List<Note>,
-    val pitch: Pitch?
+    val notes: List<Note> = emptyList(),
+    val pitch: Pitch = null,
 )

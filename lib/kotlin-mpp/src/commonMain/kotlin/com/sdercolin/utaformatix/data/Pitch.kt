@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class Pitch(
-    val ticks: List<Long>,
-    val values: List<Double?>,
-    val isAbsolute: Boolean
+    val ticks: List<Long> = emptyList(),
+    val values: List<Double?> = emptyList(),
+    val isAbsolute: Boolean = false,
 )

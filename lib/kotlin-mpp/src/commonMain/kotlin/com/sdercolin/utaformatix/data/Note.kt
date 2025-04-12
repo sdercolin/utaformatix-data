@@ -15,6 +15,6 @@ data class Note(
     val key: Int,
     val tickOn: Long,
     val tickOff: Long,
-    val lyric: String,
-    val phoneme: String?
+    val lyric: String = "",
+    val phoneme: String? = null,
 )

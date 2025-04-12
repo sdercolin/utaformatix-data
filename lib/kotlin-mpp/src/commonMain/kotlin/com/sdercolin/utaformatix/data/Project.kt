@@ -13,8 +13,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Project(
     val name: String,
-    val tracks: List<Track>,
+    val tracks: List<Track> = emptyList(),
     val timeSignatures: List<TimeSignature>,
     val tempos: List<Tempo>,
-    val measurePrefix: Int
+    val measurePrefix: Int = 0,
 )

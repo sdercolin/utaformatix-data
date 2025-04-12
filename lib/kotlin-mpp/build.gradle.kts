@@ -6,7 +6,7 @@ plugins {
     id("signing")
 }
 
-val libVersion by extra { "1.0.0" }
+val libVersion by extra { "1.0.1" }
 val groupId by extra { "com.sdercolin.utaformatix" }
 val artifactId by extra { "utaformatix-data" }
 group = groupId
